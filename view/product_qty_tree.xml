@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- This file is part product_qty module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
+<tree string="Products" colors="If(Less(Eval('quantity', 1), 1), 'red', 'black')">
+    <field name="rec_name"/>
+    <field name="quantity"/>
+    <field name="forecast_quantity"/>
+    <field name="active" tree_invisible="1"/>
+</tree>

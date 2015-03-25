@@ -1,0 +1,31 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "model:ir.action,name:act_product_product_qty_form"
+msgid "Qty Variants"
+msgstr "Cantidad variantes"
+
+msgctxt "model:ir.action,name:act_product_qty_form"
+msgid "Qty Variants"
+msgstr "Cantidad variantes"
+
+msgctxt "model:ir.action,name:act_template_qty_form"
+msgid "Qty Products"
+msgstr "Cantidad productos"
+
+msgctxt "model:ir.ui.menu,name:menu_product_qty"
+msgid "Qty Variants"
+msgstr "Cantidad variantes"
+
+msgctxt "model:ir.ui.menu,name:menu_template_qty"
+msgid "Qty Products"
+msgstr "Cantidad productos"
+
+msgctxt "view:product.product:"
+msgid "Products"
+msgstr "Productos"
+
+msgctxt "view:product.template:"
+msgid "Products"
+msgstr "Productos"
