@@ -25,7 +25,7 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="act_window" ref="act_template_qty_form"/>
         </record>
 
-        <menuitem parent="product.menu_main_product" sequence="1" id="menu_template_qty"
+        <menuitem parent="stock.menu_stock" sequence="1" id="menu_template_qty"
             action="act_template_qty_form"/>
         <record model="ir.ui.menu-res.group" id="menu_template_qty_group_stock">
             <field name="menu" ref="menu_template_qty"/>
