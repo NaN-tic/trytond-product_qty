@@ -73,7 +73,9 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         <record model="ir.action.act_window" id="act_product_product_qty_form">
             <field name="name">Qty Variants</field>
             <field name="res_model">product.product</field>
-            <field name="domain">[("template", "=", Eval('active_id'))]</field>
+            <field name="domain"
+                eval="[('template', '=', Eval('active_id'))]"
+                pyson="1"/>
         </record>
         <record model="ir.action.act_window.view" id="act_product_product_qty_list_view">
             <field name="sequence" eval="10"/>
