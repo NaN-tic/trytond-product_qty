@@ -30,8 +30,9 @@ class Product:
     def get_quantity(cls, products, name):
         Location = Pool().get('stock.location')
 
+        context = Transaction().context
         # not locations in context
-        if 'locations' not in Transaction().context:
+        if not context.get('locations'):
             warehouses = Location.search([('type', '=', 'warehouse')])
             location_ids = [w.storage_location.id for w in warehouses]
             with Transaction().set_context(locations=location_ids):
@@ -43,8 +44,9 @@ class Product:
     def search_quantity(cls, name, domain=None):
         Location = Pool().get('stock.location')
 
+        context = Transaction().context
         # not locations in context
-        if 'locations' not in Transaction().context:
+        if not context.get('locations'):
             warehouses = Location.search([('type', '=', 'warehouse')])
             location_ids = [w.storage_location.id for w in warehouses]
             with Transaction().set_context(locations=location_ids):
