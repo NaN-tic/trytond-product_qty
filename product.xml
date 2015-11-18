@@ -11,8 +11,8 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         </record>
         <record model="ir.ui.view" id="template_qty_view_form">
             <field name="model">product.template</field>
+            <field name="type" eval="None"/>
             <field name="inherit" ref="product.template_view_form"/>
-            <field name="type">form</field>
             <field name="name">template_qty_form</field>
         </record>
 
@@ -46,8 +46,8 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
         </record>
         <record model="ir.ui.view" id="product_qty_view_form">
             <field name="model">product.product</field>
+            <field name="type" eval="None"/>
             <field name="inherit" ref="product.product_view_form"/>
-            <field name="type">form</field>
             <field name="name">product_qty_form</field>
         </record>
 
@@ -97,8 +97,8 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
     <data depends="product_manufacturer">
         <record model="ir.ui.view" id="template_qty_manufacturer_view_tree">
             <field name="model">product.template</field>
+            <field name="type" eval="None"/>
             <field name="inherit" ref="template_qty_view_tree"/>
-            <field name="type">tree</field>
             <field name="name">template_qty_manufacturer_tree</field>
         </record>
     </data>
@@ -106,8 +106,8 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
     <data depends="purchase">
         <record model="ir.ui.view" id="template_qty_purchase_view_tree">
             <field name="model">product.template</field>
+            <field name="type" eval="None"/>
             <field name="inherit" ref="template_qty_view_tree"/>
-            <field name="type">tree</field>
             <field name="name">template_qty_purchase_tree</field>
         </record>
     </data>
