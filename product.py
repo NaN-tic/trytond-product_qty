@@ -39,28 +39,36 @@ class Product:
 
     @classmethod
     def get_quantity(cls, products, name):
-        Location = Pool().get('stock.location')
+        pool = Pool()
+        Location = pool.get('stock.location')
+        Date = pool.get('ir.date')
 
+        today = Date.today()
         context = Transaction().context
+
         # not locations in context
         if not context.get('locations'):
             warehouses = Location.search([('type', '=', 'warehouse')])
             location_ids = [w.storage_location.id for w in warehouses]
-            with Transaction().set_context(locations=location_ids):
+            with Transaction().set_context(locations=location_ids, stock_date_end=today):
                 return cls._get_quantity(products, name, location_ids, products)
         # return super (with locations in context)
         return super(Product, cls).get_quantity(products, name)
 
     @classmethod
     def search_quantity(cls, name, domain=None):
-        Location = Pool().get('stock.location')
+        pool = Pool()
+        Location = pool.get('stock.location')
+        Date = pool.get('ir.date')
 
+        today = Date.today()
         context = Transaction().context
+
         # not locations in context
         if not context.get('locations'):
             warehouses = Location.search([('type', '=', 'warehouse')])
             location_ids = [w.storage_location.id for w in warehouses]
-            with Transaction().set_context(locations=location_ids):
+            with Transaction().set_context(locations=location_ids, stock_date_end=today):
                 return cls._search_quantity(name, location_ids, domain)
         # return super (with locations in context)
         return super(Product, cls).search_quantity(name, domain=None)
