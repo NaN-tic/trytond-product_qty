@@ -6,10 +6,10 @@ from trytond.transaction import Transaction
 from trytond.pyson import If, Eval, Less
 
 __all__ = ['Template', 'Product']
-__metaclass__ = PoolMeta
 
 
 class Template:
+    __metaclass__ = PoolMeta
     __name__ = 'product.template'
 
     @classmethod
@@ -30,6 +30,7 @@ class Template:
 
 
 class Product:
+    __metaclass__ = PoolMeta
     __name__ = 'product.product'
 
     @classmethod
