@@ -12,11 +12,6 @@ class Template:
     __metaclass__ = PoolMeta
     __name__ = 'product.template'
 
-    @classmethod
-    def view_attributes(cls):
-        return [('/tree', 'colors',
-                If(Less(Eval('quantity', 1), 1), 'red', 'black'))]
-
     def sum_product(self, name):
         Location = Pool().get('stock.location')
 
@@ -32,11 +27,6 @@ class Template:
 class Product:
     __metaclass__ = PoolMeta
     __name__ = 'product.product'
-
-    @classmethod
-    def view_attributes(cls):
-        return [('/tree', 'colors',
-                If(Less(Eval('quantity', 1), 1), 'red', 'black'))]
 
     @classmethod
     def get_quantity(cls, products, name):
