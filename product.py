@@ -64,7 +64,6 @@ class Product:
 
         today = Date.today()
         context = Transaction().context
-
         # not locations in context
         if not context.get('locations'):
             warehouses = Location.search([('type', '=', 'warehouse')])
@@ -72,4 +71,4 @@ class Product:
             with Transaction().set_context(locations=location_ids, stock_date_end=today):
                 return cls._search_quantity(name, location_ids, domain)
         # return super (with locations in context)
-        return super(Product, cls).search_quantity(name, domain=None)
+        return super(Product, cls).search_quantity(name, domain)
