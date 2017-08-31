@@ -19,7 +19,7 @@ class Template:
                 'locations' not in Transaction().context):
             warehouses = Location.search([('type', '=', 'warehouse')])
             location_ids = [w.storage_location.id for w in warehouses]
-            with Transaction().set_context(locations=location_ids):
+            with Transaction().set_context(locations=location_ids, with_childs=True):
                 return super(Template, self).sum_product(name)
         return super(Template, self).sum_product(name)
 
@@ -41,7 +41,8 @@ class Product:
         if not context.get('locations'):
             warehouses = Location.search([('type', '=', 'warehouse')])
             location_ids = [w.storage_location.id for w in warehouses]
-            with Transaction().set_context(locations=location_ids, stock_date_end=today):
+            with Transaction().set_context(locations=location_ids,
+                    stock_date_end=today, with_childs=True):
                 return cls._get_quantity(products, name, location_ids, products)
         # return super (with locations in context)
         return super(Product, cls).get_quantity(products, name)
