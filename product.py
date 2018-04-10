@@ -3,7 +3,6 @@
 # the full copyright notices and license terms.
 from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
-from trytond.pyson import If, Eval, Less
 
 __all__ = ['Template', 'Product']
 
@@ -19,7 +18,8 @@ class Template:
                 'locations' not in Transaction().context):
             warehouses = Location.search([('type', '=', 'warehouse')])
             location_ids = [w.storage_location.id for w in warehouses]
-            with Transaction().set_context(locations=location_ids, with_childs=True):
+            with Transaction().set_context(locations=location_ids,
+                    with_childs=True):
                 return super(Template, self).sum_product(name)
         return super(Template, self).sum_product(name)
 
@@ -43,7 +43,9 @@ class Product:
             location_ids = [w.storage_location.id for w in warehouses]
             with Transaction().set_context(locations=location_ids,
                     stock_date_end=today, with_childs=True):
-                return cls._get_quantity(products, name, location_ids, products)
+                products_ids = map(int, products)
+                return cls._get_quantity(products, name, location_ids,
+                    grouping_filter=(products_ids,))
         # return super (with locations in context)
         return super(Product, cls).get_quantity(products, name)
 
@@ -59,7 +61,8 @@ class Product:
         if not context.get('locations'):
             warehouses = Location.search([('type', '=', 'warehouse')])
             location_ids = [w.storage_location.id for w in warehouses]
-            with Transaction().set_context(locations=location_ids, stock_date_end=today):
+            with Transaction().set_context(locations=location_ids,
+                    stock_date_end=today):
                 return cls._search_quantity(name, location_ids, domain)
         # return super (with locations in context)
         return super(Product, cls).search_quantity(name, domain)
