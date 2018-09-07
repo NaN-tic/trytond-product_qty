@@ -7,8 +7,7 @@ from trytond.transaction import Transaction
 __all__ = ['Template', 'Product']
 
 
-class Template:
-    __metaclass__ = PoolMeta
+class Template(metaclass=PoolMeta):
     __name__ = 'product.template'
 
     def sum_product(self, name):
@@ -24,8 +23,7 @@ class Template:
         return super(Template, self).sum_product(name)
 
 
-class Product:
-    __metaclass__ = PoolMeta
+class Product(metaclass=PoolMeta):
     __name__ = 'product.product'
 
     @classmethod
