@@ -41,7 +41,7 @@ class Product(metaclass=PoolMeta):
             location_ids = [w.storage_location.id for w in warehouses]
             with Transaction().set_context(locations=location_ids,
                     stock_date_end=today, with_childs=True):
-                products_ids = map(int, products)
+                products_ids = list(map(int, products))
                 return cls._get_quantity(products, name, location_ids,
                     grouping_filter=(products_ids,))
         # return super (with locations in context)
