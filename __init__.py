@@ -5,6 +5,5 @@ from . import product
 
 def register():
     Pool.register(
-        product.Template,
         product.Product,
         module='product_qty', type_='model')
