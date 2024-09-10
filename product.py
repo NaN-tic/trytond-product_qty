@@ -28,7 +28,7 @@ class Product(metaclass=PoolMeta):
                 return cls._get_quantity(products, name, location_ids,
                     grouping_filter=(products_ids,))
         # return super (with locations in context)
-        return super(Product, cls).get_quantity(products, name)
+        return super().get_quantity(products, name)
 
     @classmethod
     def search_quantity(cls, name, domain=None):
@@ -46,4 +46,4 @@ class Product(metaclass=PoolMeta):
                     stock_date_end=today):
                 return cls._search_quantity(name, location_ids, domain)
         # return super (with locations in context)
-        return super(Product, cls).search_quantity(name, domain)
+        return super().search_quantity(name, domain)
