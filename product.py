@@ -54,14 +54,15 @@ class Product(metaclass=PoolMeta):
         Location = pool.get('stock.location')
         Date = pool.get('ir.date')
 
-        today = Date.today()
+        stock_date = Date.today() if name == 'product' else datetime.date.max
         context = Transaction().context
+
         # not locations in context
         if not context.get('locations'):
             warehouses = Location.search([('type', '=', 'warehouse')])
             location_ids = [w.storage_location.id for w in warehouses]
             with Transaction().set_context(locations=location_ids,
-                    stock_date_end=today):
+                    stock_date_end=stock_date, with_childs=True):
                 return cls._search_quantity(name, location_ids, domain)
         # return super (with locations in context)
         return super(Product, cls).search_quantity(name, domain)
